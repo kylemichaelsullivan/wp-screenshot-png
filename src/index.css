@@ -1,0 +1,52 @@
+button,
+input,
+label {
+	cursor: pointer;
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+.flex-1 {
+	flex: 1 1 0%;
+}
+
+.gap-4 {
+	gap: 1rem;
+}
+
+.Input textarea {
+	padding: min(0.5rem, 5%);
+}
+
+.Colors {
+	display: flex;
+}
+
+.Colors input {
+	width: 100%;
+}
+
+.Output {
+	border: 1px solid;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.Output .canvas {
+	justify-content: center;
+	align-items: center;
+	width: 1200px;
+	height: 900px;
+}
+
+@media (min-width: 350px) {
+	.sm\:flex-row {
+		flex-direction: row;
+	}
+}
