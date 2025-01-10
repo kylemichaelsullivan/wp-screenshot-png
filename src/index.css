@@ -24,7 +24,8 @@ label {
 	gap: 1rem;
 }
 
-.App > div {
+.Input,
+.Buttons {
 	width: 100%;
 	max-width: var(--max-width);
 	margin: 0 auto;
