@@ -82,7 +82,6 @@ export function WPContextProvider({ children }: WPContextProviderProps) {
 			link.href = imgData;
 			link.download = 'screenshot.png';
 			link.click();
-			document.body.removeChild(link);
 		}
 	}
 
