@@ -24,6 +24,10 @@ label {
 	gap: 1rem;
 }
 
+.text-center {
+	text-align: center;
+}
+
 .Input,
 .Buttons {
 	width: 100%;
