@@ -24,18 +24,18 @@ function FontWeight() {
 	};
 
 	return (
-		<div className="flex-1">
-		<label className="flex flex-col">
-			Font Weight
-		<select className='flex-1' value={fontWeight} onChange={handleChange}>
-			{fontWeights.map(({ key, value }) => (
-				<option key={key} value={key}>
-					{value}
-				</option>
-			))}
-		</select>
+		<div className='flex-1'>
+			<label className='flex flex-col'>
+				Font Weight
+				<select className='flex-1' value={fontWeight} onChange={handleChange}>
+					{fontWeights.map(({ key, value }) => (
+						<option key={key} value={key}>
+							{value}
+						</option>
+					))}
+				</select>
 			</label>
-			</div>
+		</div>
 	);
 }
 
