@@ -1,11 +1,12 @@
 import Background from './BackgroundColor';
-import Color from './Color';
-
+import TextColor from './TextColor';
+import StrokeColor from './StrokeColor';
 function Colors() {
 	return (
 		<div className='Colors flex flex-col gap-4 sm:flex-row'>
 			<Background />
-			<Color />
+			<TextColor />
+			<StrokeColor />
 		</div>
 	);
 }

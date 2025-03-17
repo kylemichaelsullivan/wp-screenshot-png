@@ -15,15 +15,16 @@ import type { TColor, TFontWeightKey, TImage } from '@/types';
 type WPContextType = {
 	text: string;
 	backgroundImage: TImage;
-	backgroundImageSrc: string;
 	backgroundColor: TColor;
-	color: TColor;
+	textColor: TColor;
+	strokeColor: TColor;
 	fontSize: number;
 	fontWeight: TFontWeightKey;
 	handleTextChange: (text: string) => void;
 	handleBackgroundImageChange: (backgroundImage: TImage) => void;
 	handleBackgroundColorChange: (backgroundColor: TColor) => void;
-	handleColorChange: (color: TColor) => void;
+	handleTextColorChange: (textColor: TColor) => void;
+	handleStrokeColorChange: (strokeColor: TColor) => void;
 	handleFontSizeChange: (size: number) => void;
 	handleFontWeightChange: (weight: TFontWeightKey) => void;
 	componentRef: RefObject<HTMLDivElement>;
@@ -45,9 +46,9 @@ type WPContextProviderProps = {
 
 const initialText = '';
 const initialBackgroundImage = null;
-const initialBackgroundImageSrc = '';
 const initialBackgroundColor = '#ffffff';
-const initialColor = '#000000';
+const initialTextColor = '#000000';
+const initialStrokeColor = '#000000';
 const initialFontSize = 72;
 const initialFontWeight = 700;
 const initialBackgroundPosition = 'center';
@@ -58,45 +59,48 @@ export function WPContextProvider({ children }: WPContextProviderProps) {
 	const componentRef = useRef<HTMLDivElement>(null);
 
 	const [text, setText] = useState<string>(initialText);
+
 	const [backgroundImage, setBackgroundImage] = useState<TImage>(
 		initialBackgroundImage,
 	);
-	const [backgroundImageSrc, setBackgroundImageSrc] = useState<string>(
-		initialBackgroundImageSrc,
-	);
+
 	const [backgroundColor, setBackgroundColor] = useState<TColor>(
 		initialBackgroundColor,
 	);
-	const [color, setColor] = useState<TColor>(initialColor);
-	const [fontSize, setFontSize] = useState<number>(initialFontSize);
-	const [fontWeight, setFontWeight] =
-		useState<TFontWeightKey>(initialFontWeight);
 	const [backgroundPosition, setBackgroundPosition] = useState(
 		initialBackgroundPosition,
 	);
+
 	const [backgroundRepeat, setBackgroundRepeat] = useState(
 		initialBackgroundRepeat,
 	);
 	const [backgroundSize, setBackgroundSize] = useState(initialBackgroundSize);
+
+	const [textColor, setTextColor] = useState<TColor>(initialTextColor);
+	const [strokeColor, setStrokeColor] = useState<TColor>(initialStrokeColor);
+
+	const [fontSize, setFontSize] = useState<number>(initialFontSize);
+	const [fontWeight, setFontWeight] =
+		useState<TFontWeightKey>(initialFontWeight);
 
 	function handleTextChange(text: string) {
 		setText(text);
 	}
 
 	function handleBackgroundImageChange(backgroundImage: TImage) {
-		const imageUrl = backgroundImage
-			? URL.createObjectURL(backgroundImage)
-			: '';
 		setBackgroundImage(backgroundImage);
-		setBackgroundImageSrc(imageUrl);
 	}
 
 	function handleBackgroundColorChange(backgroundColor: TColor) {
 		setBackgroundColor(backgroundColor);
 	}
 
-	function handleColorChange(color: TColor) {
-		setColor(color);
+	function handleTextColorChange(textColor: TColor) {
+		setTextColor(textColor);
+	}
+
+	function handleStrokeColorChange(strokeColor: TColor) {
+		setStrokeColor(strokeColor);
 	}
 
 	function handleFontSizeChange(size: number) {
@@ -137,9 +141,9 @@ export function WPContextProvider({ children }: WPContextProviderProps) {
 	function reset() {
 		setText(initialText);
 		setBackgroundImage(initialBackgroundImage);
-		setBackgroundImageSrc(initialBackgroundImageSrc);
 		setBackgroundColor(initialBackgroundColor);
-		setColor(initialColor);
+		setTextColor(initialTextColor);
+		setStrokeColor(initialStrokeColor);
 		setFontSize(initialFontSize);
 		setFontWeight(initialFontWeight);
 		setBackgroundPosition(initialBackgroundPosition);
@@ -166,15 +170,16 @@ export function WPContextProvider({ children }: WPContextProviderProps) {
 	const value = {
 		text,
 		backgroundImage,
-		backgroundImageSrc,
 		backgroundColor,
-		color,
+		textColor,
+		strokeColor,
 		fontSize,
 		fontWeight,
 		handleTextChange,
 		handleBackgroundImageChange,
 		handleBackgroundColorChange,
-		handleColorChange,
+		handleTextColorChange,
+		handleStrokeColorChange,
 		handleFontSizeChange,
 		handleFontWeightChange,
 		componentRef,

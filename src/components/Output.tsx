@@ -6,24 +6,24 @@ function Output() {
 	const {
 		text,
 		backgroundColor,
-		color,
+		textColor,
+		strokeColor,
 		fontSize,
 		fontWeight,
-		backgroundImageSrc,
+		backgroundImage,
 		backgroundPosition,
 		backgroundRepeat,
 		backgroundSize,
 		componentRef,
 	} = useWP();
 
-	const [backgroundImage, setBackgroundImage] =
-		useState<string>(backgroundImageSrc);
+	const [backgroundImageSrc, setBackgroundImageSrc] = useState<string>('');
 
 	useEffect(() => {
-		backgroundImageSrc
-			? setBackgroundImage(`url(${backgroundImageSrc})`)
-			: 'none';
-	}, [backgroundImageSrc]);
+		backgroundImage
+			? setBackgroundImageSrc(URL.createObjectURL(backgroundImage))
+			: setBackgroundImageSrc('');
+	}, [backgroundImage]);
 
 	return (
 		<div className='Output flex'>
@@ -32,13 +32,16 @@ function Output() {
 				ref={componentRef}
 				style={{
 					backgroundColor,
-					backgroundImage: backgroundImage,
+					backgroundImage: backgroundImageSrc
+						? `url(${backgroundImageSrc})`
+						: 'none',
 					backgroundPosition,
 					backgroundRepeat,
 					backgroundSize,
-					color,
+					color: textColor,
 					fontSize,
 					fontWeight,
+					textShadow: `1px 1px 1px ${strokeColor}`,
 				}}
 			>
 				{text}
