@@ -41,7 +41,7 @@ type WPContextType = {
 	handleStrokeColorChange: (strokeColor: TColor) => void;
 	handleFontSizeChange: (size: number) => void;
 	handleFontWeightChange: (weight: TFontWeightKey) => void;
-	componentRef: RefObject<HTMLDivElement>;
+	componentRef: RefObject<HTMLDivElement | null>;
 	reset: () => void;
 	save: () => void;
 };
