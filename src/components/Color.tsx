@@ -6,7 +6,7 @@ function Color() {
 	return (
 		<div className='Color flex flex-col flex-1'>
 			<label title='Set Text Color'>
-				Color
+				Text Color
 				<input
 					type='color'
 					name='color'

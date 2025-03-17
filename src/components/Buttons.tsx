@@ -1,9 +1,9 @@
-import Reset from '@/components/Reset';
-import Save from '@/components/Save';
+import Reset from './Reset';
+import Save from './Save';
 
 function Buttons() {
 	return (
-		<div className='Buttons flex flex-col gap-4 sm:flex-row'>
+		<div className='Buttons flex flex-col-reverse gap-4 mx-auto sm:flex-row'>
 			<Reset />
 			<Save />
 		</div>

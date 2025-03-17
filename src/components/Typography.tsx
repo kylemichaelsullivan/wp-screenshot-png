@@ -1,5 +1,5 @@
-import FontSize from '@/components/FontSize';
-import FontWeight from '@/components/FontWeight';
+import FontSize from './FontSize';
+import FontWeight from './FontWeight';
 
 function Typography() {
 	return (

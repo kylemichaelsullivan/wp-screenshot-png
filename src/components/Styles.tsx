@@ -1,5 +1,5 @@
-import Colors from '@/components/Colors';
-import Typography from '@/components/Typography';
+import Colors from './Colors';
+import Typography from './Typography';
 
 function Styles() {
 	return (

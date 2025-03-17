@@ -1,5 +1,5 @@
-import Background from '@/components/Background';
-import Color from '@/components/Color';
+import Background from './BackgroundColor';
+import Color from './Color';
 
 function Colors() {
 	return (
