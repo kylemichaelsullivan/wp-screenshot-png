@@ -1,12 +1,12 @@
 import { useWP } from '@/context';
 
 function Reset() {
-	const { reset } = useWP();
+	const { btn, reset } = useWP();
 
 	return (
 		<button
 			type='button'
-			className='Reset flex-1'
+			className={`Reset flex-1 ${btn}`}
 			title='Reset'
 			onClick={reset}
 		>

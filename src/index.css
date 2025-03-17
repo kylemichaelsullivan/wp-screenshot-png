@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
 	--max-width: min(90vw, 1200px);
 }
@@ -8,6 +12,14 @@ label {
 	cursor: pointer;
 }
 
+button,
+input:not([type='file']),
+select,
+textarea {
+	border: 1px solid #000000;
+	border-radius: 0;
+}
+
 h1 {
 	margin-top: 0.33em;
 }
@@ -15,59 +27,6 @@ h1 {
 select {
 	background-color: #ffffff;
 	border-radius: 0;
-}
-
-.flex {
-	display: flex;
-}
-
-.flex-col {
-	flex-direction: column;
-}
-
-.flex-col-reverse {
-	flex-direction: column-reverse;
-}
-
-.flex-1 {
-	flex: 1 1 0%;
-}
-
-.flex-auto {
-	flex: 1 1 auto;
-}
-
-.gap-4 {
-	gap: 1rem;
-}
-
-.items-center {
-	align-items: center;
-}
-
-.rounded-none {
-	border-radius: 0;
-}
-
-.text-center {
-	text-align: center;
-}
-
-.w-full {
-	width: 100%;
-}
-
-.p-2 {
-	padding: 0.5rem;
-}
-
-.mx-auto {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.overflow-auto {
-	overflow: auto;
 }
 
 .Input,
@@ -99,21 +58,4 @@ select {
 	align-items: center;
 	width: 1200px;
 	height: 900px;
-}
-
-@media (min-width: 350px) {
-	.sm\:flex-row {
-		flex-direction: row;
-	}
-}
-
-@media (min-width: 768px) {
-	.md\:flex-row {
-		flex-direction: row;
-	}
-
-	.md\:mx-auto {
-		margin-left: auto;
-		margin-right: auto;
-	}
 }

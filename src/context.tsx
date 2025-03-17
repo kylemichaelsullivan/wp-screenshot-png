@@ -20,6 +20,7 @@ import type {
 } from '@/types';
 
 type WPContextType = {
+	btn: string;
 	text: string;
 	backgroundColor: TColor;
 	backgroundImage: TImage;
@@ -50,6 +51,9 @@ const WPContext = createContext<WPContextType | undefined>(undefined);
 type WPContextProviderProps = {
 	children: ReactNode;
 };
+
+const btn =
+	'bg-gray-200 border-gray-700 hover:bg-gray-300 hover:shadow-md active:bg-gray-400';
 
 const initialText = '';
 const initialBackgroundImage = null;
@@ -176,6 +180,7 @@ export function WPContextProvider({ children }: WPContextProviderProps) {
 	}, []);
 
 	const value = {
+		btn,
 		text,
 		backgroundColor,
 		backgroundImage,
