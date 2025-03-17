@@ -5,8 +5,9 @@ function Text() {
 
 	return (
 		<textarea
-			className='Text flex-auto rounded-none p-2'
+			className='Text flex-auto rounded-none w-full p-2'
 			placeholder='Enter Text Here'
+			title='Enter Text Here'
 			value={text}
 			onChange={(e) => handleTextChange(e.target.value)}
 		/>

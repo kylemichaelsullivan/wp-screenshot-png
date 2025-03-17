@@ -9,6 +9,7 @@ function BackgroundRepeat() {
 			<select
 				className='flex-auto p-2'
 				value={backgroundRepeat}
+				title='Set Background Repeat'
 				onChange={(e) => handleBackgroundRepeatChange(e.target.value)}
 			>
 				<option value='no-repeat'>No Repeat</option>

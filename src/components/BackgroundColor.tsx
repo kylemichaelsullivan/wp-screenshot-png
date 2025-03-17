@@ -9,7 +9,6 @@ function BackgroundColor() {
 				Background Color
 				<input
 					type='color'
-					name='backgroundColor'
 					value={backgroundColor}
 					onChange={(e) => handleBackgroundColorChange(e.target.value)}
 					id='backgroundColor'

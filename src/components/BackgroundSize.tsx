@@ -9,6 +9,7 @@ function BackgroundSize() {
 			<select
 				className='flex-auto p-2'
 				value={backgroundSize}
+				title='Set Background Size'
 				onChange={(e) => handleBackgroundSizeChange(e.target.value)}
 			>
 				<option value='auto'>Auto</option>

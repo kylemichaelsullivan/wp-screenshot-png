@@ -9,6 +9,7 @@ function BackgroundPosition() {
 			<select
 				className='flex-auto p-2'
 				value={backgroundPosition}
+				title='Set Background Position'
 				onChange={(e) => handleBackgroundPositionChange(e.target.value)}
 			>
 				<option value='center'>Center</option>
