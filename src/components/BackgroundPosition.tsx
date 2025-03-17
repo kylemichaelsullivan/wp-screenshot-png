@@ -1,7 +1,12 @@
 import { useWP } from '@/context';
 
+import { TBackgroundPosition } from '@/types';
+
 function BackgroundPosition() {
-	const { backgroundPosition, handleBackgroundPositionChange } = useWP();
+	const { backgroundPosition, handleBackgroundPositionChange } = useWP() as {
+		backgroundPosition: TBackgroundPosition;
+		handleBackgroundPositionChange: (position: TBackgroundPosition) => void;
+	};
 
 	return (
 		<label className='BackgroundPosition flex flex-col flex-auto'>
@@ -10,7 +15,9 @@ function BackgroundPosition() {
 				className='flex-auto p-2'
 				value={backgroundPosition}
 				title='Set Background Position'
-				onChange={(e) => handleBackgroundPositionChange(e.target.value)}
+				onChange={(e) =>
+					handleBackgroundPositionChange(e.target.value as TBackgroundPosition)
+				}
 			>
 				<option value='center'>Center</option>
 				<option value='top'>Top</option>

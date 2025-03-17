@@ -1,7 +1,11 @@
 import { useWP } from '@/context';
+import { TBackgroundRepeat } from '@/types';
 
 function BackgroundRepeat() {
-	const { backgroundRepeat, handleBackgroundRepeatChange } = useWP();
+	const { backgroundRepeat, handleBackgroundRepeatChange } = useWP() as {
+		backgroundRepeat: TBackgroundRepeat;
+		handleBackgroundRepeatChange: (repeat: TBackgroundRepeat) => void;
+	};
 
 	return (
 		<label className='BackgroundRepeat flex flex-col flex-auto'>
@@ -10,7 +14,9 @@ function BackgroundRepeat() {
 				className='flex-auto p-2'
 				value={backgroundRepeat}
 				title='Set Background Repeat'
-				onChange={(e) => handleBackgroundRepeatChange(e.target.value)}
+				onChange={(e) =>
+					handleBackgroundRepeatChange(e.target.value as TBackgroundRepeat)
+				}
 			>
 				<option value='no-repeat'>No Repeat</option>
 				<option value='repeat'>Repeat</option>

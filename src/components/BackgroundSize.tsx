@@ -1,7 +1,12 @@
 import { useWP } from '@/context';
 
+import { TBackgroundSize } from '@/types';
+
 function BackgroundSize() {
-	const { backgroundSize, handleBackgroundSizeChange } = useWP();
+	const { backgroundSize, handleBackgroundSizeChange } = useWP() as {
+		backgroundSize: TBackgroundSize;
+		handleBackgroundSizeChange: (size: TBackgroundSize) => void;
+	};
 
 	return (
 		<label className='BackgroundSize flex flex-col flex-auto'>
@@ -10,7 +15,9 @@ function BackgroundSize() {
 				className='flex-auto p-2'
 				value={backgroundSize}
 				title='Set Background Size'
-				onChange={(e) => handleBackgroundSizeChange(e.target.value)}
+				onChange={(e) =>
+					handleBackgroundSizeChange(e.target.value as TBackgroundSize)
+				}
 			>
 				<option value='auto'>Auto</option>
 				<option value='cover'>Cover</option>
