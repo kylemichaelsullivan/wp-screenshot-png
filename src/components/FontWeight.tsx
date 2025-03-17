@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react';
 
 import { useWP } from '@/context';
+
 import type { TFontWeightKey, TFontWeightValue } from '@/types';
 
 function FontWeight() {

@@ -1,4 +1,5 @@
 import { useWP } from '@/context';
+
 import { TBackgroundRepeat } from '@/types';
 
 function BackgroundRepeat() {
