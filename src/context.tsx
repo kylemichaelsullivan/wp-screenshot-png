@@ -1,31 +1,40 @@
 import {
 	useState,
 	useEffect,
+	useRef,
 	createContext,
 	useContext,
-	useRef,
 	type ReactNode,
 	type RefObject,
 } from 'react';
 
 import html2canvas from 'html2canvas';
 
-import type { TFontWeightKey, TColor } from '@/types';
+import type { TColor, TFontWeightKey, TImage } from '@/types';
 
 type WPContextType = {
 	text: string;
-	background: TColor;
+	backgroundImage: TImage;
+	backgroundImageSrc: string;
+	backgroundColor: TColor;
 	color: TColor;
 	fontSize: number;
 	fontWeight: TFontWeightKey;
 	handleTextChange: (text: string) => void;
-	handleBackgroundChange: (background: TColor) => void;
+	handleBackgroundImageChange: (backgroundImage: TImage) => void;
+	handleBackgroundColorChange: (backgroundColor: TColor) => void;
 	handleColorChange: (color: TColor) => void;
 	handleFontSizeChange: (size: number) => void;
 	handleFontWeightChange: (weight: TFontWeightKey) => void;
 	componentRef: RefObject<HTMLDivElement>;
 	reset: () => void;
 	save: () => void;
+	backgroundPosition: string;
+	backgroundRepeat: string;
+	backgroundSize: string;
+	handleBackgroundPositionChange: (position: string) => void;
+	handleBackgroundRepeatChange: (repeat: string) => void;
+	handleBackgroundSizeChange: (size: string) => void;
 };
 
 const WPContext = createContext<WPContextType | undefined>(undefined);
@@ -35,27 +44,55 @@ type WPContextProviderProps = {
 };
 
 const initialText = '';
-const initialBackground = '#ffffff';
+const initialBackgroundImage = null;
+const initialBackgroundImageSrc = '';
+const initialBackgroundColor = '#ffffff';
 const initialColor = '#000000';
-const initialFontSize = 16;
+const initialFontSize = 72;
 const initialFontWeight = 700;
+const initialBackgroundPosition = 'center';
+const initialBackgroundRepeat = 'no-repeat';
+const initialBackgroundSize = 'cover';
 
 export function WPContextProvider({ children }: WPContextProviderProps) {
 	const componentRef = useRef<HTMLDivElement>(null);
 
-	const [text, setText] = useState(initialText);
-	const [background, setBackground] = useState<TColor>(initialBackground);
+	const [text, setText] = useState<string>(initialText);
+	const [backgroundImage, setBackgroundImage] = useState<TImage>(
+		initialBackgroundImage,
+	);
+	const [backgroundImageSrc, setBackgroundImageSrc] = useState<string>(
+		initialBackgroundImageSrc,
+	);
+	const [backgroundColor, setBackgroundColor] = useState<TColor>(
+		initialBackgroundColor,
+	);
 	const [color, setColor] = useState<TColor>(initialColor);
-	const [fontSize, setFontSize] = useState(initialFontSize);
+	const [fontSize, setFontSize] = useState<number>(initialFontSize);
 	const [fontWeight, setFontWeight] =
 		useState<TFontWeightKey>(initialFontWeight);
+	const [backgroundPosition, setBackgroundPosition] = useState(
+		initialBackgroundPosition,
+	);
+	const [backgroundRepeat, setBackgroundRepeat] = useState(
+		initialBackgroundRepeat,
+	);
+	const [backgroundSize, setBackgroundSize] = useState(initialBackgroundSize);
 
 	function handleTextChange(text: string) {
 		setText(text);
 	}
 
-	function handleBackgroundChange(background: TColor) {
-		setBackground(background);
+	function handleBackgroundImageChange(backgroundImage: TImage) {
+		const imageUrl = backgroundImage
+			? URL.createObjectURL(backgroundImage)
+			: '';
+		setBackgroundImage(backgroundImage);
+		setBackgroundImageSrc(imageUrl);
+	}
+
+	function handleBackgroundColorChange(backgroundColor: TColor) {
+		setBackgroundColor(backgroundColor);
 	}
 
 	function handleColorChange(color: TColor) {
@@ -68,6 +105,18 @@ export function WPContextProvider({ children }: WPContextProviderProps) {
 
 	function handleFontWeightChange(weight: TFontWeightKey) {
 		setFontWeight(weight);
+	}
+
+	function handleBackgroundPositionChange(position: string) {
+		setBackgroundPosition(position);
+	}
+
+	function handleBackgroundRepeatChange(repeat: string) {
+		setBackgroundRepeat(repeat);
+	}
+
+	function handleBackgroundSizeChange(size: string) {
+		setBackgroundSize(size);
 	}
 
 	async function save() {
@@ -87,10 +136,15 @@ export function WPContextProvider({ children }: WPContextProviderProps) {
 
 	function reset() {
 		setText(initialText);
-		setBackground(initialBackground);
+		setBackgroundImage(initialBackgroundImage);
+		setBackgroundImageSrc(initialBackgroundImageSrc);
+		setBackgroundColor(initialBackgroundColor);
 		setColor(initialColor);
 		setFontSize(initialFontSize);
 		setFontWeight(initialFontWeight);
+		setBackgroundPosition(initialBackgroundPosition);
+		setBackgroundRepeat(initialBackgroundRepeat);
+		setBackgroundSize(initialBackgroundSize);
 
 		document.querySelectorAll('input').forEach((input) => input.blur());
 	}
@@ -111,18 +165,27 @@ export function WPContextProvider({ children }: WPContextProviderProps) {
 
 	const value = {
 		text,
-		background,
+		backgroundImage,
+		backgroundImageSrc,
+		backgroundColor,
 		color,
 		fontSize,
 		fontWeight,
 		handleTextChange,
-		handleBackgroundChange,
+		handleBackgroundImageChange,
+		handleBackgroundColorChange,
 		handleColorChange,
 		handleFontSizeChange,
 		handleFontWeightChange,
 		componentRef,
 		save,
 		reset,
+		backgroundPosition,
+		backgroundRepeat,
+		backgroundSize,
+		handleBackgroundPositionChange,
+		handleBackgroundRepeatChange,
+		handleBackgroundSizeChange,
 	};
 
 	return <WPContext.Provider value={value}>{children}</WPContext.Provider>;

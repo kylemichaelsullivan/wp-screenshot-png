@@ -1,8 +1,29 @@
+import { useState, useEffect } from 'react';
+
 import { useWP } from '@/context';
 
 function Output() {
-	const { text, background, color, fontSize, fontWeight, componentRef } =
-		useWP();
+	const {
+		text,
+		backgroundColor,
+		color,
+		fontSize,
+		fontWeight,
+		backgroundImageSrc,
+		backgroundPosition,
+		backgroundRepeat,
+		backgroundSize,
+		componentRef,
+	} = useWP();
+
+	const [backgroundImage, setBackgroundImage] =
+		useState<string>(backgroundImageSrc);
+
+	useEffect(() => {
+		backgroundImageSrc
+			? setBackgroundImage(`url(${backgroundImageSrc})`)
+			: 'none';
+	}, [backgroundImageSrc]);
 
 	return (
 		<div className='Output flex'>
@@ -10,7 +31,11 @@ function Output() {
 				className='canvas flex'
 				ref={componentRef}
 				style={{
-					background,
+					backgroundColor,
+					backgroundImage: backgroundImage,
+					backgroundPosition,
+					backgroundRepeat,
+					backgroundSize,
 					color,
 					fontSize,
 					fontWeight,

@@ -1,20 +1,13 @@
-import { useWP } from '@/context';
+import BackgroundPosition from '@/components/BackgroundPosition';
+import BackgroundRepeat from '@/components/BackgroundRepeat';
+import BackgroundSize from '@/components/BackgroundSize';
 
 function Background() {
-	const { background, handleBackgroundChange } = useWP();
-
 	return (
-		<div className='Background flex flex-col flex-1'>
-			<label title='Set Background Color'>
-				Background
-				<input
-					type='color'
-					name='background'
-					value={background}
-					onChange={(e) => handleBackgroundChange(e.target.value)}
-					id='background'
-				/>
-			</label>
+		<div className='Background flex flex-col gap-4 md:flex-row'>
+			<BackgroundPosition />
+			<BackgroundRepeat />
+			<BackgroundSize />
 		</div>
 	);
 }
